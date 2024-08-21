@@ -1,13 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { authUser } from "../../database/useUsersDatabase";
+import { useUsersDatabase } from "../../database/useUsersDatabase";
 
 const AuthContext = createContext({});
 
 export const Role = {
-  SUPER: "SUPER",
+  SUPER: "SUPER", 
   ADM: "ADM",
   USER: "USER"
-}
+};
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState({

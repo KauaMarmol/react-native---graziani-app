@@ -7,19 +7,14 @@ const FontContext = createContext({});
 export function FontProvider({ children }) {
 
     const [loaded, error] = useFonts({
-        regular: require("../../assets/fonts/Montserrat-Regular.ttf"),
-        bold: require("../../assets/fonts/Montserrat-Bold.ttf"),
-        semiBold: require("../../assets/fonts/Montserrat-SemiBold.ttf"),
+        regular: require('../../assets/fonts/Montserrat-Regular.ttf'),
+        bold: require('../../assets/fonts/Montserrat-Bold.ttf'),
+        thin: require('../../assets/fonts/Montserrat-Thin.ttf'),
+      });
 
-    });
-
-    if (!loaded && !error) {
-        return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator size="large" />
-            </View>
-        )
-    }
+      if (!loaded && !error) {
+        return null;
+      }
 
     return (
         <FontContext.Provider value={{ loaded }}>
