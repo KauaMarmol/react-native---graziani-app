@@ -1,8 +1,8 @@
 import { Button, Text, View } from "react-native";
-import { useAuth } from "../hooks/Auth";
+import { useAuth } from "../../hooks/Auth/index";
 
 export default function Home() {
-  const {signOut} = useAauth();
+  const {signOut} = useAuth();
   return (
     <View style={{flex: 1, justifyContent:'center', alignItemns: 'center'}}>
       <Text>Home</Text>
