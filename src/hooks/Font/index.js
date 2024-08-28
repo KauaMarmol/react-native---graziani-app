@@ -10,11 +10,11 @@ export function FontProvider({ children }) {
         regular: require('../../assets/fonts/Montserrat-Regular.ttf'),
         bold: require('../../assets/fonts/Montserrat-Bold.ttf'),
         thin: require('../../assets/fonts/Montserrat-Thin.ttf'),
-      });
+    });
 
-      if (!loaded && !error) {
+    if (!loaded && !error) {
         return null;
-      }
+    }
 
     return (
         <FontContext.Provider value={{ loaded }}>
