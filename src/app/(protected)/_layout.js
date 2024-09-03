@@ -17,7 +17,7 @@ function CustomDrawerContent(props) {
           }}
           style={{ width: 100, height: 100, borderRadius: 50, alignSelf: "center" }}
         />
-        <Text style={{ textAlign: "center", fontSize: 16, fontFamily: "regular" }}>{user.user.nome}</Text>
+        <Text style={{ textAlign: "center", fontSize: 16, fontFamily: "regular" }}>{user?.user?.nome}</Text>
       </View>
       <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
