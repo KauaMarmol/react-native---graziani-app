@@ -6,7 +6,7 @@ import { ActivityIndicator, Text, View } from "react-native";
 const AuthContext = createContext({});
 
 export const Role = {
-  SUPER: "SUPER", 
+  SUPER: "SUPER",
   ADM: "ADM",
   USER: "USER"
 };
@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     async function loadStorageData() {
       const storageUser = await AsyncStorage.getItem("@payment:user");
 
-      if (storagedUser) {
+      if (storageUser) {
         setUser({
           autenticated: true,
           user: JSON.parse(storageUser),
@@ -40,17 +40,17 @@ export function AuthProvider({ children }) {
     };
 
     loadStorageData();
-  },[]);
+  }, []);
 
   const signIn = async ({ email, password }) => {
-    const response = await useAuth({ email, password });
+    const response = await authUser({ email, password });
     if (!response) {
       setUser({
         autenticated: false,
         user: null,
         role: null,
       });
-      throw new Error("Usuário ou senha inválidos"); 
+      throw new Error("Usuário ou senha inválidos");
     }
 
     await AsyncStorage.setItem("@payment:user", JSON.stringify(response));

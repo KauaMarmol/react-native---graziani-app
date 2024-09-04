@@ -11,21 +11,21 @@ function CustomDrawerContent(props) {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ marginTop: 20, justifyContent: "center", alignItems: "center", backgroundColor: "#f0f0f0", paddingVertical: 10 }}>
-          <Image
-            source={{
-              uri: 'https://www.github.com/KauaMarmol.png',
+        <Image
+          source={{
+            uri: 'https://www.github.com/KauaMarmol.png',
           }}
           style={{ width: 100, height: 100, borderRadius: 50, alignSelf: "center" }}
         />
         <Text style={{ textAlign: "center", fontSize: 16, fontFamily: "regular" }}>{user?.user?.nome}</Text>
       </View>
       <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-    </DrawerContentScrollView>
-    <TouchableOpacity onPress={()=>signOut()} style={{ justifyContent: "center", alignItems: "center", height: 50, margin: 10, backgroundColor: "#0000ff", borderRadius: 5, }}>
+        <DrawerItemList {...props} />
+      </DrawerContentScrollView>
+      <TouchableOpacity onPress={() => signOut()} style={{ justifyContent: "center", alignItems: "center", height: 50, margin: 10, backgroundColor: "#0000ff", borderRadius: 5, }}>
 
-      <Text style={{color: "white", fontFamily: "bold" }} >Deslogar</Text>
-    </TouchableOpacity>
+        <Text style={{ color: "white", fontFamily: "bold" }} >Deslogar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -33,7 +33,7 @@ function CustomDrawerContent(props) {
 const DrawerLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer drawerContent={(props) => <CustomDrawerContent {...props} /> }>
+      <Drawer drawerContent={(props) => <CustomDrawerContent {...props} />}>
         <Drawer.Screen
           name="index"
           options={{ drawerLabel: "Principal", headerTitle: "Principal", drawerIcon: () => (<Ionicons name="home-outline" size={20} color="black" />), }}
