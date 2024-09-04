@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import PagerView from "react-native-pager-view";
 
@@ -12,13 +13,13 @@ export function Banner() {
     return (
         <View style={styles.container}>
             <PagerView initialPage={0} style={styles.content} onPageSelected={onPageSelected}>
-                <View key="1" style={style.page}>
+                <View key="1" style={styles.page}>
                     <Text style={styles.text}>Banner 1</Text>
                 </View>
-                <View key="2" style={style.page}>
+                <View key="2" style={styles.page}>
                     <Text style={styles.text}>Banner 2</Text>
                 </View>
-                <View key="3" style={style.page}>
+                <View key="3" style={styles.page}>
                     <Text style={styles.text}>Banner 3</Text>
                 </View>
             </PagerView>
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    buller: {
+    bullet: {
         width: 10,
         height: 10,
         borderRadius: 5,
