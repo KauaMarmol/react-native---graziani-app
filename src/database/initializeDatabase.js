@@ -1,7 +1,7 @@
 export async function initializeDatabase(database) {
     try {
         await database.execAsync(`
-            DROP TABLE IS EXISTS payments;
+            DROP TABLE IF EXISTS payments;
 
             DROP TABLE IF EXISTS users;
 
@@ -15,7 +15,6 @@ export async function initializeDatabase(database) {
                 created_at DATE DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATE
             );
-
 
             CREATE TABLE IF NOT EXISTS payments (
              id INTEGER PRIMARY KEY AUTOINCREMENT,
