@@ -4,117 +4,118 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from "react";
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { TouchableOpacity } from "react-native";
 
 export default function Payment() {
   const [valor, setValor] = useState("0,00");
   const [sugestoes, setSugestoes] = useState([
-    {
-      "id": 1,
-      "name": "Drew Swine"
-    }, {
-      "id": 2,
-      "name": "Bogart Gossipin"
-    }, {
-      "id": 3,
-      "name": "Cos Armytage"
-    }, {
-      "id": 4,
-      "name": "Vickie Howselee"
-    }, {
-      "id": 5,
-      "name": "Sande Calleja"
-    }, {
-      "id": 6,
-      "name": "Quintilla Handsheart"
-    }, {
-      "id": 7,
-      "name": "Arleen Johnston"
-    }, {
-      "id": 8,
-      "name": "Pepe Costy"
-    }, {
-      "id": 9,
-      "name": "Reese Donneely"
-    }, {
-      "id": 10,
-      "name": "Fritz McElory"
-    }, {
-      "id": 11,
-      "name": "Kermit Gerrad"
-    }, {
-      "id": 12,
-      "name": "Bastien Dymock"
-    }, {
-      "id": 13,
-      "name": "Ewart Marti"
-    }, {
-      "id": 14,
-      "name": "Valma Bonick"
-    }, {
-      "id": 15,
-      "name": "Brannon Simons"
-    }, {
-      "id": 16,
-      "name": "Orton Stammers"
-    }, {
-      "id": 17,
-      "name": "Paton Rediers"
-    }, {
-      "id": 18,
-      "name": "Jacquenette Kingstne"
-    }, {
-      "id": 19,
-      "name": "Vivianne Kearley"
-    }, {
-      "id": 20,
-      "name": "Tammie Latour"
-    }, {
-      "id": 21,
-      "name": "Jamesy Lennarde"
-    }, {
-      "id": 22,
-      "name": "Natka Louisot"
-    }, {
-      "id": 23,
-      "name": "Ofella Cleaveland"
-    }, {
-      "id": 24,
-      "name": "Bridget Manoelli"
-    }, {
-      "id": 25,
-      "name": "Cristobal Kilian"
-    }, {
-      "id": 26,
-      "name": "Sharleen MacKibbon"
-    }, {
-      "id": 27,
-      "name": "Park Brantl"
-    }, {
-      "id": 28,
-      "name": "Julianne Tivolier"
-    }, {
-      "id": 29,
-      "name": "Shoshana Geertje"
-    }, {
-      "id": 30,
-      "name": "Edwina Bownas"
-    }, {
-      "id": 31,
-      "name": "Natalya Slyvester"
-    }, {
-      "id": 32,
-      "name": "Chloe Otridge"
-    }, {
-      "id": 33,
-      "name": "Josey McIllrick"
-    }, {
-      "id": 34,
-      "name": "Blake Archdeckne"
-    }, {
-      "id": 35,
-      "name": "Lewiss Sallery"
-    }
-  ]);
+  {
+    "id": 1,
+    "nome": "Leoline Giggs"
+  }, {
+    "id": 2,
+    "nome": "Ramsey McIlreavy"
+  }, {
+    "id": 3,
+    "nome": "Germaine Dowdeswell"
+  }, {
+    "id": 4,
+    "nome": "Dane Edgeley"
+  }, {
+    "id": 5,
+    "nome": "Danyette Straniero"
+  }, {
+    "id": 6,
+    "nome": "Edithe Messiter"
+  }, {
+    "id": 7,
+    "nome": "Gregoire Sleet"
+  }, {
+    "id": 8,
+    "nome": "Dunstan Ummfrey"
+  }, {
+    "id": 9,
+    "nome": "Jarad Ollivier"
+  }, {
+    "id": 10,
+    "nome": "Nady Ingliss"
+  }, {
+    "id": 11,
+    "nome": "Krysta Ferroni"
+  }, {
+    "id": 12,
+    "nome": "Pietro Runciman"
+  }, {
+    "id": 13,
+    "nome": "Costanza Pyrke"
+  }, {
+    "id": 14,
+    "nome": "Evangelina Wiggins"
+  }, {
+    "id": 15,
+    "nome": "Brena Taye"
+  }, {
+    "id": 16,
+    "nome": "Caressa Gully"
+  }, {
+    "id": 17,
+    "nome": "Shelli Britten"
+  }, {
+    "id": 18,
+    "nome": "Lynnea Forrest"
+  }, {
+    "id": 19,
+    "nome": "Joy Winnard"
+  }, {
+    "id": 20,
+    "nome": "Everard Cromb"
+  }, {
+    "id": 21,
+    "nome": "Anthony Aldersley"
+  }, {
+    "id": 22,
+    "nome": "Leo Pinard"
+  }, {
+    "id": 23,
+    "nome": "Donnell Goldingay"
+  }, {
+    "id": 24,
+    "nome": "Jemmy Westby"
+  }, {
+    "id": 25,
+    "nome": "Ahmed Godbolt"
+  }, {
+    "id": 26,
+    "nome": "Francyne Ferenc"
+  }, {
+    "id": 27,
+    "nome": "Brandy Brydie"
+  }, {
+    "id": 28,
+    "nome": "Randene Pesik"
+  }, {
+    "id": 29,
+    "nome": "Camey Work"
+  }, {
+    "id": 30,
+    "nome": "Ignazio Maides"
+  }, {
+    "id": 31,
+    "nome": "Joan Abelwhite"
+  }, {
+    "id": 32,
+    "nome": "Allsun O'Lahy"
+  }, {
+    "id": 33,
+    "nome": "Carlota Tonsley"
+  }, {
+    "id": 34,
+    "nome": "Ludovika Cuthbert"
+  }, {
+    "id": 35,
+    "nome": "Reidar Slay"
+  }
+]);
   const [id, setId] = useState(1);
   const [data, setData] = useState(new Date());
   const [viewCalendar, setViewCalendar] = useState(false);
@@ -127,7 +128,7 @@ export default function Payment() {
 
   return (
     <View style={styles.content}>
-      <Text>Inserir Pagamentos</Text>
+      <Text style={styles.headerText}>Inserir Pagamentos</Text>
       <View style={styles.inputView}>
         <Ionicons name="wallet-outline" size={24} color="black" />
         <TextInput placeholder="Valor" keyboardType="decimal-pad" style={styles.inputValor} value={valor} onChangeText={setValor} />
@@ -158,21 +159,26 @@ export default function Payment() {
             testID="dateTimePicker"
           />
         )}
-
       </View>
       <View style={styles.inputView}>
-        <TextInput 
-          placeholder="Observações" 
-          style={styles.inputObservacao} 
+        <TextInput
+          placeholder="Observações"
+          style={styles.inputObservacao}
           value={observacao}
           onChangeText={setObservacao}
           multiline={true}
         />
       </View>
       <View style={styles.contentButtons}>
-        <Button title="Salvar" />
-        <Button title="Continuar" />
-        <Button title="Cancelar" onPress={() => router.back()} />
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Salvar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Continuar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => router.back()}>
+          <Text style={styles.buttonText}>Cancelar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -185,6 +191,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
   inputView: {
     borderColor: "black",
     borderWidth: 1,
@@ -193,11 +204,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     padding: 10,
+    borderRadius: 10,
   },
   contentButtons: {
     flexDirection: "row",
     gap: 10,
     justifyContent: "space-around",
+    marginTop: 20,
   },
   inputValor: {
     flex: 1,
@@ -216,5 +229,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     flex: 1,
     lineHeight: 20,
+  },
+  button: {
+    backgroundColor: '#6200EE',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
