@@ -5,6 +5,13 @@ import {Button, Image, Text, View} from 'react-native';
 export default function About() {
     return (
         <View style={{flex:  1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 20,
+            color: '#6200EE',
+            fontFamily: 'sans-serif',
+        }}>Sobre mim</Text>
         <Image 
                 source={{ uri: 'https://avatars.githubusercontent.com/u/159555487?v=4' }}
                 style={{ 
@@ -27,6 +34,7 @@ export default function About() {
             borderColor: '#6959CD',
             borderRadius: 10,
             paddingVertical: 5,
+            margin: 10,
         }}>
             Olá, me chamo Kauã Marmol Damasio e estou desenvolvendo este projeto para a matéria de DDM na escola Etec Prof. Milton Gazzetti de Presidente Venceslau com o auxílio do professor Graziani Zanfolin.
         </Text>

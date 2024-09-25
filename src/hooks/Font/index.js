@@ -1,6 +1,5 @@
 import { useFonts } from "expo-font";
 import { createContext, useContext } from "react";
-import { ActivityIndicator, Text, View } from "react-native-web";
 
 const FontContext = createContext({});
 

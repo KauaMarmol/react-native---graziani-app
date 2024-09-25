@@ -9,7 +9,7 @@ export default function App() {
   const { signIn, signOut } = useAuth();
   const [email, setEmail] = useState("super@email.com");
   const [password, setPassword] = useState("A123456a!");
-  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
 
   const tooglePasswordVisibility = () => {
     setPasswordVisibility(!passwordVisibility);
@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>App pronto para usar</Text>
+      <Text style={styles.title}>App pronto para usar🎉</Text>
       <View style={styles.inputbox}>
         <Ionicons name="mail-open-outline" size={20} color="black" />
         <TextInput style={styles.emailinput} placeholder="E-mail" value={email} onChangeText={setEmail} />
