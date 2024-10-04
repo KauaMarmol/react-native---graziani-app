@@ -3,7 +3,7 @@ import { useSQLiteContext } from "expo-sqlite";
 export function useUsersDatabase() {
     const database = useSQLiteContext();
 
-    async function authUser({email, password}) {
+    async function authUser({ email, password }) {
         // console.log("authUser email: ", email, " - password: " , password);
         try {
             const result = await database.getFirstAsync(`
@@ -12,11 +12,23 @@ export function useUsersDatabase() {
             return result
         } catch (error) {
             console.error("useUsersDatabase authUser error: ", error);
-                throw error;
+            throw error;
+        }
+    }
+
+    async function getAllUsers() {
+        try {
+            const result = await database.getAllAsync(`
+                SELECT id, nome FROM users
+            `);
+            return result
+        } catch (error) {
+            console.error("useUsersDatabase getAllUsers error: ", error);
+            throw error;
         }
     }
 
     return {
-        authUser,
+        authUser, getAllUsers,
     };
 }

@@ -7,9 +7,11 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from "react-native";
 import { z } from "zod";
 import { useAuth } from "../../hooks/Auth/index";
+import { usePaymentsDatabase } from "../../database/usePaymentsDatabase";
+import { useUsersDatabase } from "../../database/useUsersDatabase";
 
 const paymentSchema = z.object({
-  valor_pago: z.number().gt(0), 
+  valor_pago: z.number().gt(0),
   user_id: z.number().int().positive(),
   user_cadastro: z.number().int().positive(),
   data_pagamento: z.date(),
@@ -18,120 +20,15 @@ const paymentSchema = z.object({
 
 export default function Payment() {
   const [valor, setValor] = useState("0,00");
-  const [sugestoes, setSugestoes] = useState([
-    {
-      "id": 1,
-      "nome": "Leoline Giggs"
-    }, {
-      "id": 2,
-      "nome": "Ramsey McIlreavy"
-    }, {
-      "id": 3,
-      "nome": "Germaine Dowdeswell"
-    }, {
-      "id": 4,
-      "nome": "Dane Edgeley"
-    }, {
-      "id": 5,
-      "nome": "Danyette Straniero"
-    }, {
-      "id": 6,
-      "nome": "Edithe Messiter"
-    }, {
-      "id": 7,
-      "nome": "Gregoire Sleet"
-    }, {
-      "id": 8,
-      "nome": "Dunstan Ummfrey"
-    }, {
-      "id": 9,
-      "nome": "Jarad Ollivier"
-    }, {
-      "id": 10,
-      "nome": "Nady Ingliss"
-    }, {
-      "id": 11,
-      "nome": "Krysta Ferroni"
-    }, {
-      "id": 12,
-      "nome": "Pietro Runciman"
-    }, {
-      "id": 13,
-      "nome": "Costanza Pyrke"
-    }, {
-      "id": 14,
-      "nome": "Evangelina Wiggins"
-    }, {
-      "id": 15,
-      "nome": "Brena Taye"
-    }, {
-      "id": 16,
-      "nome": "Caressa Gully"
-    }, {
-      "id": 17,
-      "nome": "Shelli Britten"
-    }, {
-      "id": 18,
-      "nome": "Lynnea Forrest"
-    }, {
-      "id": 19,
-      "nome": "Joy Winnard"
-    }, {
-      "id": 20,
-      "nome": "Everard Cromb"
-    }, {
-      "id": 21,
-      "nome": "Anthony Aldersley"
-    }, {
-      "id": 22,
-      "nome": "Leo Pinard"
-    }, {
-      "id": 23,
-      "nome": "Donnell Goldingay"
-    }, {
-      "id": 24,
-      "nome": "Jemmy Westby"
-    }, {
-      "id": 25,
-      "nome": "Ahmed Godbolt"
-    }, {
-      "id": 26,
-      "nome": "Francyne Ferenc"
-    }, {
-      "id": 27,
-      "nome": "Brandy Brydie"
-    }, {
-      "id": 28,
-      "nome": "Randene Pesik"
-    }, {
-      "id": 29,
-      "nome": "Camey Work"
-    }, {
-      "id": 30,
-      "nome": "Ignazio Maides"
-    }, {
-      "id": 31,
-      "nome": "Joan Abelwhite"
-    }, {
-      "id": 32,
-      "nome": "Allsun O'Lahy"
-    }, {
-      "id": 33,
-      "nome": "Carlota Tonsley"
-    }, {
-      "id": 34,
-      "nome": "Ludovika Cuthbert"
-    }, {
-      "id": 35,
-      "nome": "Reidar Slay"
-    }
-  ]);
+  const [sugestoes, setSugestoes] = useState([]);
   const [id, setId] = useState(1);
   const [data, setData] = useState(new Date());
   const [viewCalendar, setViewCalendar] = useState(false);
   const [observacao, setObservacao] = useState("");
   const valueRef = useRef();
-  const {user} = useAuth()
+  const { user } = useAuth()
+  const { createPayment } = usePaymentsDatabase();
+  const { getAllUsers } = useUsersDatabase();
 
   const handleCalendar = (event, selectedDate) => {
     setViewCalendar(false);
@@ -139,7 +36,16 @@ export default function Payment() {
   };
 
   useEffect(() => {
-    valueRef?.current?.focus();
+    (async () => {
+      valueRef?.current?.focus();
+      try {
+        const users = await getAllUsers();
+        setSugestoes(users);
+        setId(users[0].id);
+    } catch (error) {
+      console.log(error);
+    }
+    })();
   }, [])
 
   const handleChangeValor = (value) => {
@@ -163,20 +69,20 @@ export default function Payment() {
   };
 
 
-const convertValue = (value) => {
-  try {
-    const valorLimpo = value.replace(",", "").replace(".", "");
-    const valorConvertido = Number(valorLimpo) / 100;
-    if (valorConvertido === 0 || isNaN(valorConvertido)) {
-      return 0
+  const convertValue = (value) => {
+    try {
+      const valorLimpo = value.replace(",", "").replace(".", "");
+      const valorConvertido = Number(valorLimpo) / 100;
+      if (valorConvertido === 0 || isNaN(valorConvertido)) {
+        return 0
+      }
+      return valorConvertido
+    } catch (error) {
+      return valorConvertido;
     }
-    return valorConvertido
-  } catch (error) {
-    return valorConvertido;
   }
-}
 
-  const handleSubmit = async ()=> {
+  const handleSubmit = async () => {
     const payment = {
       user_id: id,
       user_cadastro: Number(user.user.id),
@@ -186,7 +92,13 @@ const convertValue = (value) => {
     };
     try {
       const result = await paymentSchema.parseAsync(payment);
-      console.log(result);
+      const { insertedID } = await createPayment(payment);
+      console.log(insertedID);
+      setValor("0,00");
+      setId(sugestoes[0].id);
+      setData(new Date());
+      setObservacao("");
+      valueRef?.current?.focus();
     } catch (error) {
       console.log(error);
     }
