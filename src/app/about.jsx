@@ -39,7 +39,7 @@ export default function About() {
             Olá, me chamo Kauã Marmol Damasio e estou desenvolvendo este projeto para a matéria de DDM na escola Etec Prof. Milton Gazzetti de Presidente Venceslau com o auxílio do professor Graziani Zanfolin.
         </Text>
         <TouchableOpacity 
-                onPress={() => {router.replace("/")}} 
+                onPress={() => {router.back()}} 
                 style={{
                     backgroundColor: '#6200EE',
                     paddingVertical: 10, 

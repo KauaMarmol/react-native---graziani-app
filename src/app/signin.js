@@ -37,9 +37,8 @@ export default function App() {
         <TextInput style={styles.emailinput} placeholder="Senha" value={password} onChangeText={setPassword} secureTextEntry={passwordVisibility} />
         <Ionicons name={passwordVisibility ? "eye-off-outline" : "eye-outline"} size={20} color="black" onPress={tooglePasswordVisibility} />
       </View>
-
       <Button title="Entrar" onPress={handleEntrarSuper} color="#4caf50" />
-      <Button title="Sobre" onPress={() => router.push("/about")} color="#6a1b9a" />
+      <Button title="Sobre" onPress={() => router.push("about")} color="#6a1b9a" />
       <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} color="#d32f2f" />
       <StatusBar style="auto" />
     </View>
