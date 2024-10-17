@@ -95,7 +95,7 @@ export default function Payment() {
       const { insertedID } = await createPayment(payment);
       console.log(insertedID);
       setValor("0,00");
-      setId(sugestoes[0].id);
+      setId(sugestoes[0].id); 
       setData(new Date());
       setObservacao("");
       valueRef?.current?.focus();
