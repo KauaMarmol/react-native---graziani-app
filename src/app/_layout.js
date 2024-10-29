@@ -2,15 +2,13 @@ import { Stack, useSegments, router } from "expo-router";
 import { AppProvider } from "../hooks";
 import { useAuth } from "../hooks/Auth";
 import { useEffect } from "react";
-import { View } from "react-native-web";
-import { Text } from "react-native";
 
 const StackLayout = () => {
     const { user } = useAuth();
 
     useEffect(() => {
 
-        if (!user?.autenticated) {
+        if (!user?.autgenticated) {
             router.replace("signin");
         } else {
                 router.replace("(protected)");

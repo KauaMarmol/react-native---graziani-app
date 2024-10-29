@@ -13,7 +13,7 @@ export const Role = {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState({
-    autenticated: null,
+    authenticated: false,
     user: null,
     role: null,
   });
@@ -26,13 +26,13 @@ export function AuthProvider({ children }) {
 
       if (storageUser) {
         setUser({
-          autenticated: true,
+          authenticated: true,
           user: JSON.parse(storageUser),
           role: JSON.parse(storageUser).role,
         });
       } else {
         setUser({
-          autenticated: false,
+          authnticated: false,
           user: null,
           role: null,
         });
@@ -46,7 +46,7 @@ export function AuthProvider({ children }) {
     const response = await authUser({ email, password });
     if (!response) {
       setUser({
-        autenticated: false,
+        authenticated: false,
         user: null,
         role: null,
       });
@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
     await AsyncStorage.setItem("@payment:user", JSON.stringify(response));
 
     setUser({
-      autenticated: true,
+      authenticated: true,
       user: response,
       role: response.role,
     });
@@ -64,10 +64,14 @@ export function AuthProvider({ children }) {
 
   const signOut = async () => {
     await AsyncStorage.removeItem("@payment:user");
-    setUser({});
+      setUser({
+        authnticated: false,
+        user: null,
+        role: null,
+      });
   };
 
-  if (user?.autenticated === null) {
+  if (user?.authenticated === null) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text style={{ fontSize: 28, marginTop: 15 }}>
