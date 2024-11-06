@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
         });
       } else {
         setUser({
-          authnticated: false,
+          authenticated: false,
           user: null,
           role: null,
         });
@@ -65,7 +65,7 @@ export function AuthProvider({ children }) {
   const signOut = async () => {
     await AsyncStorage.removeItem("@payment:user");
       setUser({
-        authnticated: false,
+        authenticated: false,
         user: null,
         role: null,
       });
