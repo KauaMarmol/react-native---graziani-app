@@ -40,6 +40,7 @@ export default function App() {
       <Button title="Entrar" onPress={handleEntrarSuper} color="#4caf50" />
       <Button title="Sobre" onPress={() => router.push("about")} color="#6a1b9a" />
       <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} color="#d32f2f" />
+      <Button title="Banco de dados" onPress={() => router.push("/maintenance")} />
       <StatusBar style="auto" />
     </View>
   );
