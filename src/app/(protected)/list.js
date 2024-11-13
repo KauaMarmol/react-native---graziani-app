@@ -21,7 +21,6 @@ export default function List() {
     const payments = await getPayments(page);
 
     if (payments.length < 5) setHasMore(false) //Se retornar menos de 5 registros, não tem mais dados para carregar
-    console.log(payments)
     setData([...data, ...payments])
     setLoading(false)
   }
@@ -58,7 +57,6 @@ export default function List() {
       keyExtractor={(item) => item.id.toString()}
     />
 </View>
-  
 
   );
 }
