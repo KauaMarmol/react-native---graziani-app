@@ -1,9 +1,10 @@
+
 import { router } from "expo-router";
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
 import { useMaintenanceDatabase } from "../database/useMaintenanceDatabase";
 
 export default function Maintenance() {
-const {} = useMaintenanceDatabase();
+    const { resetDatabase, importUsers, importPayments } = useMaintenanceDatabase();
 
     const handleReset = async () => {
         // reset database
@@ -20,9 +21,9 @@ const {} = useMaintenanceDatabase();
         <Text style={styles.windowTitle}>Manutenção do Banco</Text>
         <View style={styles.contentButtons}>
             <Button title="zerar" onPress={handleReset} />
-            <Button title="importar usuários" />
-            <Button title="importar pagamentos" />
-            <Button title="voltar" onPress={()=> router.back()}/>
+            <Button title="importar usuários" onPress={() => importUsers()} />
+            <Button title="importar pagamentos" onPress={() => importPayments()} />
+            <Button title="voltar" onPress={() => router.back()} />
         </View>
     </View>
 }
