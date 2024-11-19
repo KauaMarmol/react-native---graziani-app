@@ -26,7 +26,7 @@ export function useMaintenanceDatabase() {
                         updated_at DATE
                     );
                 `)
-                    database.execAsync(`
+                await database.execAsync(`
                     CREATE TABLE payments (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         user_id INTEGER NOT NULL,
@@ -35,6 +35,7 @@ export function useMaintenanceDatabase() {
                         data_pagamento DATE NOT NULL,
                         numero_recibo TEXT NOT NULL,
                         observacao TEXT,
+                        imagem TEXT DEFAULT "",
                         created_at DATE DEFAULT CURRENT_TIMESTAMP,
                         updated_at DATE,
                         FOREIGN KEY (user_id) REFERENCES users(id),

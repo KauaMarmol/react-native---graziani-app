@@ -46,6 +46,10 @@ const DrawerLayout = () => {
           name="payment"
           options={{ drawerLabel: "Pagamentos", headerTitle: "Pagamentos", drawerIcon: () => (<Ionicons name="diamond-outline" size={20} color="black" />), }}
         />
+        <Drawer.Screen
+          name="details"
+          options={{ unmountOnBlur: true, headerTitle: "Detalhes", drawerItemStyle: { display: "none" } }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   );
