@@ -14,7 +14,7 @@ export async function initializeDatabase(database) {
                 nome TEXT,
                 curso TEXT,
                 email TEXT NOT NULL UNIQUE,
-                data_pagamento DATE,
+                data_pagamento DATE NOT NULL,
                 senha TEXT NOT NULL DEFAULT 'A123456a!',
                 role TEXT NOT NULL DEFAULT 'user',
                 imagem TEXT DEFAULT "",

@@ -1,13 +1,15 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
-import { usePaymentsDatabase } from "../database/usePaymentsDatabase";
+import { usePaymentsDatabase } from "../../database/usePaymentsDatabase";
 import { useEffect } from "react";
-import { formatDateToBrazilian } from "../utils/formatDate";
+import { formatDateToBrazilian } from "../../utils/formatData";
+import { formatCurrencyBRL } from "../../utils/formatCurrent";
 
 export default function Details() {
     const { id } = useLocalSearchParams()
     const { getPayment } = usePaymentsDatabase()
     const [payment, setPayment] = useState({})
+    const { pickImage } = usePickImage()
 
     const fetchData = async () => {
         try {
@@ -24,6 +26,15 @@ export default function Details() {
         fetchData()
     }, [])
     
+    const handlePickImage = async () => {
+        try {
+            const image = await pickImage()
+            console.log("Image: ", image)
+        } catch (error) {
+            console.log("handlePickImage", error)
+            Alert.alert("Erro ao buscar imagem")
+        }
+
     return ( 
     <View style={styles.container}>
         <Text>Details - {id ? id : "Sem id" }</Text>
@@ -43,7 +54,7 @@ export default function Details() {
         </View>
         <View style={styles.containerButtons}>
             <Button title="Editar" disabled/>
-            <Button title="IMAGEM"/>
+            <Button title="IMAGEM" onPress={handlePickImage}/>
             <Button title="REMOVER IMAGEM"/>
             <Button title="VOLTAR" onPress={() => router.push("list")} />
         </View>
@@ -69,4 +80,4 @@ const styles = StyleSheet.create({
         fontFamily: "regular",
         fontSize: 18,
     }
-})
+})};
