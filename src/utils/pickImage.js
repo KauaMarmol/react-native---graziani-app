@@ -14,7 +14,7 @@ export function usePickImage() {
             });
 
             if (!result.cancelled) {
-                console.log("pickImage", result.assets[0].uri);
+                // console.log("pickImage", result.assets[0].uri);
                 const localUri = result.assets[0].uri;
                 const filename = localUri.split('/').pop(); // nome do arquivo
                 const newPath = `${directory}/${filename}`;
@@ -24,7 +24,7 @@ export function usePickImage() {
                     to: newPath,
                 });
 
-                console.log("newPath", newPath);
+                // console.log("newPath", newPath);
                 return filename;
             } else return ""
 

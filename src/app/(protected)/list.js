@@ -4,6 +4,7 @@ import { usePaymentsDatabase } from "../../database/usePaymentsDatabase";
 import { FlashList } from "@shopify/flash-list";
 import { formatDateToBrazilian } from "../../utils/formatData";
 import { formatCurrencyBRL } from "../../utils/formatCurrent";
+import { router } from "expo-router";
 
 export default function List() {
   const { getPayments } = usePaymentsDatabase()

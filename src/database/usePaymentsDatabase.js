@@ -40,5 +40,26 @@ export function usePaymentsDatabase() {
         }
     }
 
-    return { createPayment, getPayments, getPayment };
+    async function setImagePayment(id, filename) {
+    const updated_at = new Date().toLocaleString("pt-BR").replace("T", " ").split(",")[0];
+    const statement = await database.prepareAsync(`
+        UPDATE payments SET imagem = $filename, updated_at = $updated_at WHERE id = $id;
+        `);
+
+        try {
+            const result = await statement.executeAsync({
+                $filename: filename,
+                $updated_at: updated_at,
+                $id: id
+            });
+            return result.changes;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        } finally {
+            await statement.finalizeAsync();
+        }
+    }
+
+    return { createPayment, getPayments, getPayment, setImagePayment };
 }

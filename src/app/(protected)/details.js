@@ -1,15 +1,18 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
 import { usePaymentsDatabase } from "../../database/usePaymentsDatabase";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { formatDateToBrazilian } from "../../utils/formatData";
 import { formatCurrencyBRL } from "../../utils/formatCurrent";
+import { usePickImage } from "../../utils/pickImage";
+import { useConfig } from "../../hooks/Config";
 
 export default function Details() {
     const { id } = useLocalSearchParams()
-    const { getPayment } = usePaymentsDatabase()
+    const { getPayment, setImagePayment } = usePaymentsDatabase()
     const [payment, setPayment] = useState({})
     const { pickImage } = usePickImage()
+    const { directory } = useConfig()
 
     const fetchData = async () => {
         try {
@@ -29,11 +32,25 @@ export default function Details() {
     const handlePickImage = async () => {
         try {
             const image = await pickImage()
-            console.log("Image: ", image)
+            if (!!!image) return;
+            setPayment({ ...payment, imagem: image })
+            await setImagePayment(id, image);
+            // console.log("Image: ", image);
         } catch (error) {
             console.log("handlePickImage", error)
             Alert.alert("Erro ao buscar imagem")
         }
+    }
+
+    const handleRemoveImage = async () => {
+        try {
+            setPayment({ ...payment, imagem: "" })
+            await setImagePayment(id, "");
+        } catch (error) {
+            console.log("handleRemoveImage", error)
+            Alert.alert("Erro ao remover imagem")
+        }
+    }
 
     return ( 
     <View style={styles.container}>
@@ -48,14 +65,14 @@ export default function Details() {
         <View style={ styles.contentImage }>
         {
             !!payment?.imagem ?
-            <Image source={{ uri: payment?.imagem }} style={{ width: 200, height: 200 }} />
+            <Image source={{ uri: `${directory}/${payment?.imagem}` }} style={{ width: 200, height: 200 }} />
             : <Text>Não há imagem cadastrada</Text>
         }
         </View>
         <View style={styles.containerButtons}>
             <Button title="Editar" disabled/>
             <Button title="IMAGEM" onPress={handlePickImage}/>
-            <Button title="REMOVER IMAGEM"/>
+            <Button title="REMOVER IMAGEM" onPress={handleRemoveImage}/>
             <Button title="VOLTAR" onPress={() => router.push("list")} />
         </View>
     </View>
@@ -80,4 +97,4 @@ const styles = StyleSheet.create({
         fontFamily: "regular",
         fontSize: 18,
     }
-})};
+});
