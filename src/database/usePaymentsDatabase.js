@@ -41,7 +41,7 @@ export function usePaymentsDatabase() {
     }
 
     async function setImagePayment(id, filename) {
-    const updated_at = new Date().toLocaleString("pt-BR").replace("T", " ").split(",")[0];
+    const updated_at = new Date().toLocaleString("pt-BR").replace("T", " ").split(".")[0];
     const statement = await database.prepareAsync(`
         UPDATE payments SET imagem = $filename, updated_at = $updated_at WHERE id = $id;
         `);

@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, Image, StyleSheet, Text, View } from "react-native";
 import { usePaymentsDatabase } from "../../database/usePaymentsDatabase";
 import { useEffect, useState } from "react";
 import { formatDateToBrazilian } from "../../utils/formatData";
@@ -18,7 +18,7 @@ export default function Details() {
         try {
             const payment = await getPayment(id)
             // console.log(payment)
-            setPayment(data)
+            setPayment(payment)
         } catch (error) {
             Alert.alert("Erro ao buscar pagamento")
             console.log(error)
@@ -31,13 +31,13 @@ export default function Details() {
     
     const handlePickImage = async () => {
         try {
-            const image = await pickImage()
+            const image = await pickImage();
             if (!!!image) return;
             setPayment({ ...payment, imagem: image })
             await setImagePayment(id, image);
             // console.log("Image: ", image);
         } catch (error) {
-            console.log("handlePickImage", error)
+            console.log("handlePickImage: ", error)
             Alert.alert("Erro ao buscar imagem")
         }
     }

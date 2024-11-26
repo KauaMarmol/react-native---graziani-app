@@ -96,7 +96,7 @@ export default function Payment() {
 
     try {
       const result = await paymentSchema.parseAsync(payment);
-      payment.data_pagamento = new Date(payment.data_pagamento).toISOString().replace("T", " ").split("0", "")[0];
+      payment.data_pagamento = data.toISOString().replace("T", " ").split(".")[0];
       const { insertedID } = await createPayment(payment);
       console.log(insertedID);
       setValor("0,00");

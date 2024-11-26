@@ -64,7 +64,7 @@ export default function About() {
                 shadowRadius: 10,
                 elevation: 3,
             }}>
-                Olá, me chamo Kauã Marmol Damasio e estou desenvolvendo este projeto para a matéria de DDM na escola Etec Prof. Milton Gazzetti de Presidente Venceslau com o auxílio do professor Graziani Zanfolin.
+                Olá, me chamo Kauã Marmol e estou desenvolvendo este projeto para a matéria de DDM na escola Etec Prof. Milton Gazzetti de Presidente Venceslau com o auxílio do professor Graziani Zanfolin.
             </Text>
             
             <TouchableOpacity 
