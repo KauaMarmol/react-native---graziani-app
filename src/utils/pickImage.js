@@ -1,5 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system'; // Certifique-se de importar o FileSystem
 import { useConfig } from '../hooks/Config';
 
 export function usePickImage() {
@@ -14,12 +14,13 @@ export function usePickImage() {
                 aspect: [1, 1],
             });
 
-            if (!result.cancelled) {
+            if (!result.canceled) {
                 // console.log("pickImage", result.assets[0].uri);
                 const localUri = result.assets[0].uri;
                 const filename = localUri.split('/').pop(); // nome do arquivo
                 const newPath = `${directory}/${filename}`;
 
+                
                 await FileSystem.moveAsync({
                     from: localUri,
                     to: newPath,
@@ -27,14 +28,14 @@ export function usePickImage() {
 
                 // console.log("newPath", newPath);
                 return filename;
-            } else return ""
-
+            } else {
+                return "";
+            }
         } catch (error) {
-            console.log("pickImage", error)
-            // throw new Error("Erro ao buscar imagem")
+            console.log("pickImage", error);
             throw error;
         }
     }
 
-    return{ pickImage }
+    return { pickImage };
 }
