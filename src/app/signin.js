@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>App pronto para usar🎉</Text>
+      <Text style={styles.title}>App para Cadastro de Eventos🎉</Text>
       <View style={styles.inputbox}>
         <Ionicons name="mail-open-outline" size={20} color="black" />
         <TextInput style={styles.emailinput} placeholder="E-mail" value={email} onChangeText={setEmail} />

@@ -160,13 +160,13 @@ export default function Payment() {
           />
         </View>
         <View style={styles.contentButtons}>
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <TouchableOpacity style={styles.buttonSalvar} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Salvar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Continuar</Text>
+            <Text style={styles.buttonContinuar}>Continuar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => router.back()}>
+          <TouchableOpacity style={styles.buttonCancelar} onPress={() => router.back()}>
             <Text style={styles.buttonText}>Cancelar</Text>
           </TouchableOpacity>
         </View>
@@ -181,14 +181,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
+    backgroundColor: "#F5F5F5", // Fundo suave
   },
   headerText: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
+    color: "#4A4A4A", // Cor de texto suave
   },
   inputView: {
-    borderColor: "black",
+    borderColor: "#B0BEC5", // Cinza claro
     borderWidth: 1,
     width: "100%",
     margin: 10,
@@ -196,17 +198,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     borderRadius: 10,
-  },
-  contentButtons: {
-    flexDirection: "row",
-    gap: 10,
-    justifyContent: "space-around",
-    marginTop: 20,
+    backgroundColor: "#FFFFFF", // Fundo branco para entradas
+    shadowColor: "#000", // Sombra suave
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   inputValor: {
     flex: 1,
     textAlign: "right",
     padding: 10,
+    fontSize: 16,
+    color: "#424242", // Texto escuro
   },
   inputData: {
     width: "100%",
@@ -214,23 +218,58 @@ const styles = StyleSheet.create({
     fontFamily: "regular",
     fontSize: 20,
     padding: 10,
+    color: "#4A4A4A", // Texto neutro
   },
   inputObservacao: {
     fontFamily: "regular",
     fontSize: 16,
     flex: 1,
     lineHeight: 20,
+    color: "#424242", // Texto escuro
   },
-  button: {
-    backgroundColor: '#6200EE',
+  contentButtons: {
+    flexDirection: "row",
+    gap: 10,
+    justifyContent: "space-around",
+    marginTop: 20,
+  },
+  buttonSalvar: {
+    backgroundColor: "#4CAF50", // Verde para "Salvar"
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  buttonContinuar: {
+    backgroundColor: "#00FFFF", // Verde-água para "Continuar"
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  buttonCancelar: {
+    backgroundColor: "#F44336", // Vermelho para "Cancelar"
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   buttonText: {
-    color: '#fff',
+    color: "#FFFFFF", // Texto branco para todos os botões
     fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
