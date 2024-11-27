@@ -130,7 +130,7 @@ export function Banner() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F0FFF0", // Cor de fundo
+        backgroundColor: "#D3D3D3", // Cor de fundo
     },
     content: {
         marginTop: 10,
